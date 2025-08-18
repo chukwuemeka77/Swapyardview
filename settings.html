@@ -3,55 +3,116 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Settings - Currency Exchange</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>Swapyard Settings</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-  <script>
-    // Session check
-    window.onload = () => {
-      if (!sessionStorage.getItem("user")) {
-        window.location.href = "login.html";
-      }
-    }
-  </script>
 </head>
 <body class="bg-black text-white">
 
-  <!-- Container -->
-  <div class="container my-5 p-4 bg-white text-black rounded-2xl shadow">
-    <h2 class="mb-4"><i class="bi bi-gear"></i> Settings</h2>
-
-    <!-- Theme Selector -->
-    <div class="mb-4">
-      <label class="form-label fw-bold">Theme</label>
-      <select class="form-select" id="themeSelector">
-        <option value="light">Light</option>
-        <option value="dark">Dark</option>
-      </select>
-    </div>
-
-    <!-- Security Settings -->
-    <div class="mb-4">
-      <label class="form-label fw-bold">Change Password</label>
-      <input type="password" class="form-control mb-2" placeholder="New Password">
-      <button class="btn btn-dark w-100"><i class="bi bi-lock"></i> Update Password</button>
-    </div>
-
-    <!-- Logout -->
-    <div>
-      <button class="btn btn-danger w-100" onclick="logoutUser()">
-        <i class="bi bi-box-arrow-right"></i> Logout
-      </button>
-    </div>
-  </div>
-
-  <script>
-    // Logout
-    function logoutUser() {
-      sessionStorage.removeItem("user");
+<!-- Session Check -->
+<script>
+  window.onload = () => {
+    if (!sessionStorage.getItem("user")) {
       window.location.href = "login.html";
     }
-  </script>
+  }
+</script>
+
+<!-- Container: Settings -->
+<div class="container my-5 p-4 bg-white text-black rounded-2xl shadow-lg max-w-2xl">
+
+  <!-- Page Header -->
+  <div class="mb-4">
+    <h2 class="h5 fw-bold"><i class="bi bi-gear-fill"></i> Settings</h2>
+    <p class="text-muted small">Manage theme, language, password and account</p>
+  </div>
+
+  <!-- Theme Selector -->
+  <div class="mb-4">
+    <label for="themeSelector" class="form-label fw-bold">Theme</label>
+    <select class="form-select" id="themeSelector">
+      <option value="light">Light</option>
+      <option value="dark">Dark</option>
+    </select>
+  </div>
+
+  <!-- Language Selector -->
+  <div class="mb-4">
+    <label for="languageSelector" class="form-label fw-bold">Language</label>
+    <select class="form-select" id="languageSelector">
+      <option value="en">English</option>
+      <option value="es">Spanish</option>
+      <option value="fr">French</option>
+      <option value="de">German</option>
+      <option value="zh">Chinese</option>
+      <option value="hi">Hindi</option>
+      <option value="ar">Arabic</option>
+      <option value="ru">Russian</option>
+      <option value="ja">Japanese</option>
+      <!-- Extendable dynamically later -->
+    </select>
+  </div>
+
+  <!-- Change Password -->
+  <div class="mb-4">
+    <label for="newPassword" class="form-label fw-bold">Change Password</label>
+    <input type="password" id="newPassword" class="form-control mb-2" placeholder="New Password">
+    <button class="btn btn-dark w-100" id="updatePasswordBtn">
+      <i class="bi bi-lock"></i> Update Password
+    </button>
+  </div>
+
+  <!-- Logout -->
+  <div class="mt-3">
+    <button class="btn btn-danger w-100" id="logoutBtn">
+      <i class="bi bi-box-arrow-right"></i> Logout
+    </button>
+  </div>
+</div>
+
+<!-- Bottom Navigation (Mobile) -->
+<div class="d-flex d-md-none justify-content-around fixed-bottom bg-white text-black py-2 shadow">
+  <a href="index.html" class="text-center"><i class="bi bi-house-fill fs-4"></i><br>Home</a>
+  <a href="wallet.html" class="text-center"><i class="bi bi-wallet2 fs-4"></i><br>Wallet</a>
+  <a href="swap.html" class="text-center"><i class="bi bi-arrow-left-right fs-3 fw-bold"></i></a>
+  <a href="payment.html" class="text-center"><i class="bi bi-cash-coin fs-4"></i><br>Pay</a>
+  <a href="transactions.html" class="text-center"><i class="bi bi-receipt-cutoff fs-4"></i><br>History</a>
+  <a href="settings.html" class="text-center"><i class="bi bi-gear-fill fs-4"></i><br>Me</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Logout
+  document.getElementById('logoutBtn').addEventListener('click', () => {
+    sessionStorage.removeItem("user");
+    window.location.href = "login.html";
+  });
+
+  // Update password placeholder logic
+  document.getElementById('updatePasswordBtn').addEventListener('click', () => {
+    const newPassword = document.getElementById('newPassword').value;
+    if(newPassword.length < 6){
+      alert("Password must be at least 6 characters");
+      return;
+    }
+    // Call backend API to update password here
+    alert("Password updated successfully!");
+    document.getElementById('newPassword').value = '';
+  });
+
+  // Theme & Language selection placeholder logic
+  document.getElementById('themeSelector').addEventListener('change', (e) => {
+    const theme = e.target.value;
+    // Apply theme dynamically
+    alert("Theme changed to " + theme);
+  });
+
+  document.getElementById('languageSelector').addEventListener('change', (e) => {
+    const lang = e.target.value;
+    // Apply language dynamically
+    alert("Language changed to " + lang);
+  });
+</script>
 </body>
-</html>
+  </html>
