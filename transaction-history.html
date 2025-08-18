@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swapyard Transaction History</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+</head>
+<body class="bg-black text-white">
+
+<!-- Session Check -->
+<script>
+window.onload = () => {
+  if(!sessionStorage.getItem("user")){
+    window.location.href = "login.html";
+  }
+}
+</script>
+
+<!-- Top Container: Page Header -->
+<div class="container mx-auto my-4 p-4 max-w-2xl bg-white text-black rounded-2xl shadow-lg">
+  <h2 class="h5 fw-bold mb-2"><i class="bi bi-receipt-cutoff"></i> Transaction History</h2>
+  <p class="text-muted small">All your swaps, payments, and wallet transactions in one place.</p>
+</div>
+
+<!-- Transaction Table Container -->
+<div class="container mx-auto my-4 max-w-2xl p-4 bg-white text-black rounded-2xl shadow-lg">
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Date</th>
+        <th scope="col">Type</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Status</th>
+        <th scope="col">Details</th>
+      </tr>
+    </thead>
+    <tbody id="transactionTable">
+      <!-- Dynamically populated with user transactions -->
+    </tbody>
+  </table>
+
+  <!-- Loader -->
+  <div id="loader" class="text-center my-3 hidden">
+    <div class="spinner-border text-dark" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <!-- Empty state -->
+  <p id="emptyState" class="text-center text-muted hidden">No transactions found.</p>
+</div>
+
+<!-- Bottom Navigation (Mobile) -->
+<div class="d-flex d-md-none justify-content-around fixed-bottom bg-white text-black py-2 shadow">
+  <a href="index.html" class="text-center"><i class="bi bi-house-fill fs-4"></i><br>Home</a>
+  <a href="wallet.html" class="text-center"><i class="bi bi-wallet2 fs-4"></i><br>Wallet</a>
+  <a href="swap.html" class="text-center"><i class="bi bi-arrow-left-right fs-3 fw-bold"></i></a>
+  <a href="payment.html" class="text-center"><i class="bi bi-cash-coin fs-4"></i><br>Pay</a>
+  <a href="transactions.html" class="text-center"><i class="bi bi-receipt-cutoff fs-4"></i><br>History</a>
+  <a href="settings.html" class="text-center"><i class="bi bi-gear-fill fs-4"></i><br>Me</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/transactions.js"></script>
+</body>
+        </html>
