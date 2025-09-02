@@ -1,2 +1,2 @@
 // Global configuration
-const API_BASE_URL = "YOUR_BACKEND_URL"; // Replace with Render backend URL
+const API_BASE_URL = "https://swapyard.onrender.com"; // Replace with Render backend URL
