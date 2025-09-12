@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom colors */
+:root {
+  --swapyard-navy: #15273d;
+  --swapyard-card: #f5f6f8;   /* slightly lighter for card */
+  --swapyard-green: #16a34a;
+  --swapyard-red: #dc2626;
+  --swapyard-white: #ffffff;
+}
+
+.bg-swapyardNavy { background-color: var(--swapyard-navy); }
+.bg-swapyardCard { background-color: var(--swapyard-card); }
+.text-white { color: var(--swapyard-white); }
+.bg-green-600 { background-color: var(--swapyard-green); }
+.bg-red-600 { background-color: var(--swapyard-red); }
+
